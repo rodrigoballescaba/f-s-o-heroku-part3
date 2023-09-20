@@ -67,12 +67,12 @@ const App = () => {
                         setNewNumber('')
                     })
                     .catch(error => {
-                        console.error('Error updating person: ', error);
+                        console.error('Error updating person: ', error.response.data.error);
                         setStyleMessage(
                             'error'
                         )
                         setNewMessage(
-                            `Information of ${existingPerson.name} has already been removed from server`
+                            error.response.data.error
                         )
                         setTimeout(() => {
                             setNewMessage(null)
@@ -100,12 +100,12 @@ const App = () => {
 
             })
             .catch(error => {
-                console.error('Error creating person: ', error);
+                console.error('Error creating person: ', error.response.data.error);
                 setStyleMessage(
                     'error'
                 )
                 setNewMessage(
-                    `Information of ${personObject.name} has already been removed from server`
+                    error.response.data.error
                 )
                 setTimeout(() => {
                     setNewMessage(null)
@@ -122,12 +122,12 @@ const App = () => {
                     setPersons(persons.filter(p => p.id !== person.id));
                 })
                 .catch(error => {
-                    console.error('Error deleting person: ', error);
+                    console.error('Error deleting person: ', error.response.data.error);
                     setStyleMessage(
                         'error'
                     )
                     setNewMessage(
-                        `Information of ${person.name} has already been removed from server`
+                        error.response.data.error
                     )
                     setTimeout(() => {
                         setNewMessage(null)
@@ -159,12 +159,12 @@ const App = () => {
                 setPersons(initialPersons)
             })
             .catch(error => {
-                console.error('Error getting persons: ', error);
+                console.error('Error getting persons: ', error.response.data.error);
                 setStyleMessage(
                     'error'
                 )
                 setNewMessage(
-                    `Error getting persons`
+                    error.response.data.error
                 )
                 setTimeout(() => {
                     setNewMessage(null)
